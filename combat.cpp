@@ -4,6 +4,8 @@
 #include "player.h"
 #include "enemy.h"
 #include "combat.h"
+#include "inventoryClasses.h"
+
 
 using namespace std;
 

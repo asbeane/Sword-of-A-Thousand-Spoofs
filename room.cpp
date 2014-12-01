@@ -1,9 +1,11 @@
 #include<iostream>
+#include<time.h>
 #include"room.h"
 
 /*Source File containing definition of class Room*/
 
 using namespace std;
+srand(time(NULL));
 
 Room::Room()
 {

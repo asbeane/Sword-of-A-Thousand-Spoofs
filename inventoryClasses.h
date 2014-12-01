@@ -1,7 +1,7 @@
-
-#include <iostream>
 #ifndef inventoryClasses_H
 #define inventoryClasses_H
+#include <iostream>
+
 
 using namespace std;
 

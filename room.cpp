@@ -7,7 +7,7 @@ using namespace std;
 
 Room::Room()
 {
-  //Seed random number generation likely at top of the file. Then utilize the rand for % 3, for 1/3 chance
+  //Seed random number generation likely at top of the file. Then utilize the rand for % 3, for 1/3 chance
   //to generate an enemey, and an item.
   //if rand % 3 == 1 give an item, else not
   //if rand % 3 == 1 (re doing random) fight an enemy.
@@ -22,8 +22,8 @@ Room::Room(int nrth, int sth, int est, int wst)
 
 bool Room::set_visited()
 {
-  visited = true;
-  return true;
+   visited = true;
+   return true;
 }
 
 int Room::get_north()

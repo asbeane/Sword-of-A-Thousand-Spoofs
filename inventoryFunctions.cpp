@@ -43,43 +43,6 @@ void Item::getItemCat()const
     }
 };
 
-void displayAlphSort()
-{
-
-}
-
-void displayTimeAdded()
-{
-
-}
-
-void displayQuantity()
-{
-
-}
-
-Item pickRandItem()
-{
-    srand(static_cast<unsigned int>(time(0)));  // seed random number generator based on current time
-    //rand() function generates a random number between 0 and at least 32767
-    //If you want to know RAND_MAX in cout
-	int randomNumber = rand(); //rand()generate random number but in sequence, srand() with time(0), helps seed it in a random position
-    int randomItem = (randomNumber %3 ) + 1; //random number 1 /3
-    switch(randomItem)
-    {
-    case 1:
-
-        break;
-    case 2:
-
-        break;
-    case 3:
-
-        break;
-    default:
-        cout << "Error in inventory pickRandItem.\n";
-    }
-}
 /***************************************************************************************/
 /**********************Class Item_Weapon Function Calls*********************************/
 /***************************************************************************************/
@@ -141,7 +104,6 @@ void Item_Armor::get_pic_shield()
             "    |______ /((( )))\\ ______|    \n"
             "    |     __\\ \\___/ /__     |    \n"
             "    |-- (((---'   '---))) --|    \n"
-            "    |          |  |         |    \n"
             "    :          |  |         :    \n"
             "     \\<>       |  |      <>/      \n"
             "      \\<>      |  |     <>/       \n"
@@ -178,29 +140,90 @@ void Item_Armor::get_pic_helmet()
 void Item_Armor::get_pic_chest()
 {
     cout << endl;
-    cout << "
-            "     ,=;~~\...../~~;=,
-            "    /   |...:::...|    \
-            "   /   /|,,,:::,,,|\    \
-            "        |   :::
-            "        |
-            "        |   :::
-            "
-            "
-            "
-            "
+    cout << "    ,=;~^~^~\\......./~^~^~;=,     \n"
+            "    /       ...:::...       \\    \n"
+            "   /   /|      :::      |\\   \\   \n"
+            "  /   / |   ,,,:::,,,   | \\   \\   \n"
+            "        |\\     :::     /|        \n"
+            "        | \\ ********* / |        \n"
+            "        |\\ \\|*|:::|*|/ /|        \n"
+            "        | \\ |*|:::|*| / |        \n"
+            "        |  \\|*|:::|*|/  |        \n"
+            "        |   *********   |        \n"
+            "         \\\~~~~~~~~~~~~~/       \n\n";
 }
+/***************************************************************************************/
+/**********************Class Item_Potion Function Calls*********************************/
+/***************************************************************************************/
+
+ostream& operator<<(ostream& out, Item_Potion& inventory)
+{
+    cout << (Item)inventory;
+    if(inventory.getPotionRating() == 500)
+        cout << "   " << "MAX";
+    else
+         cout << "  +" << inventory.getPotionRating();
+    cout << endl;
+    return out;
+}
+
+void Item_Potion::get_pic_potion()
+{
+    cout << endl;
+    cout <<  "       _____      \n"
+             "      `.___,'     \n"
+             "       (___)      \n"
+             "       <   >      \n"
+             "        ) (       \n"
+             "       /   \\      \n"
+             "      /     \\     \n"
+             "     / _    _\\    \n"
+             "    :,' `-.' `:   \n"
+             "    |~~~~~~~~~|   \n"
+             "    :~~~~~~~~~;   \n"
+             "     \\~~~~~~~/    \n"
+             "      `.___.'     \n\n";
+}
+
+/***************************************************************************************/
+/**********************Class Other Function Calls*********************************/
+/***************************************************************************************/
+Item pickRandItem()
+{
+	int randomNumber = rand(); //rand()generate random number but in sequence, srand() with time(0), helps seed it in a random position
+    int randomItem = (randomNumber %3 ) + 1; //random number 1 /3
+
+    switch(randomItem)
+    {
+    case 1:{
+        Item_Weapon random_weapon = pickRandWeapon();
+        cout << random_weapon;
+        return random_weapon;}
+    case 2:{
+        Item_Armor random_Armor = pickRandArmor();
+        cout << random_Armor;
+        return random_Armor;}
+    case 3:{
+        Item_Potion random_potion = pickRandPotion();
+        cout << random_potion;
+        return random_potion;}
+    default:{//This default case should never happen but if it does... it will make a potion
+        Item_Potion random_potion = pickRandPotion();
+        cout << random_potion;
+        return random_potion;}
+    }
+}
+
 Item_Weapon pickRandWeapon()
 {
     //rand() function generates a random number between 0 and at least 32767
     //If you want to know RAND_MAX in cout
 	int randomNumber = rand(); //rand()generate random number but in sequence, srand() with time(0), helps seed it in a random position
-    int randomItem = (randomNumber %6 ) + 1; //random number 1 /6
+    int randomItem = (randomNumber %6 ) + 1; //random number 1-6
     int randomNumber2 = rand();
     int randomItem2 =(randomNumber2 %6 ) + 1;
 
-
-    switch(randomItem+randomItem2)
+    switch(randomItem+randomItem2)//This is like rolling two six sided die.
     {
     case 2:{
         Item_Weapon axe2("Axe of Devastation", 10);
@@ -242,11 +265,11 @@ Item_Armor pickRandArmor()
     //rand() function generates a random number between 0 and at least 32767
     //If you want to know RAND_MAX in cout
 	int randomNumber = rand(); //rand()generate random number but in sequence, srand() with time(0), helps seed it in a random position
-    int randomItem = (randomNumber %6 ) + 1; //random number 1 /6
+    int randomItem = (randomNumber %6 ) + 1; //random number 1-6
     int randomNumber2 = rand();
     int randomItem2 =(randomNumber2 %6 ) + 1;
 
-    switch(randomItem +randomItem2)
+    switch(randomItem + randomItem2)
     {
     case 2:{
         Item_Armor shield1("Shield of Hylian  ", 5);
@@ -288,23 +311,41 @@ Item_Potion pickRandPotion()
     //rand() function generates a random number between 0 and at least 32767
     //If you want to know RAND_MAX in cout
 	int randomNumber = rand(); //rand()generate random number but in sequence, srand() with time(0), helps seed it in a random position
-    int randomItem = (randomNumber %3 ) + 1; //random number 1 /3
+    int randomItem = (randomNumber %4 ) + 1; //random number 1 /4
 
     switch(randomItem)
     {
-    case 1:{//Creating Health Potion that is randomly generated value between 4-12
+    case 1:{//Creating Health Potion that is randomly generated value between 5-12
         Item_Potion health1("Potion of Health  ");//Random health potion
+        health1.get_pic_potion();
         return health1;}
     case 2:{
         Item_Potion health2("Potion of Elixir  ", 500);//Random health potion
+        health2.get_pic_potion();
         return health2;}
     case 3:{
-        Item_potion health4("Potion..SupElixir ", 500 , );
+        Item_Potion health4("Potion...SupElixir", 500);
+        health4.get_pic_potion();
+        cout << "A Super Elixir Potion will permanently increase your\nhealth by 5 and restore it to full.\n\n";
         return health4;}
     default:
         Item_Potion health3("Potion of Health  ");//Random health potion
-        return health3;}
-
+        health3.get_pic_potion();
+        return health3;
     }
 }
 
+void displayAlphSort()
+{
+
+}
+
+void displayTimeAdded()
+{
+
+}
+
+void displayQuantity()
+{
+
+}

@@ -22,9 +22,6 @@ public:
     string getName()const {return m_name;};              //Get Name of Object
     int getItemQuantiy() const {return m_item_quantity;};//Get ITem quantity Of object
     void getItemCat()const;                              //Get item Category of object like Weapon, Armor, Potion;
-    void displayAlphSort(); //Does Nothing
-    void displayTimeAdded();//Does Nothing
-    void displayQuantity(); //Does Nothing
 };
 
 class Item_Weapon: public Item
@@ -68,11 +65,7 @@ public:
 
 class Item_Potion: public Item
 {
-    friend ostream& operator<<(ostream& out, Item_Potion& inventory)
-    {
-        cout << (Item)inventory << endl;
-        return out;
-    }
+    friend ostream& operator<<(ostream& out, Item_Potion& inventory);
 protected:
     int m_increase_health;
 
@@ -80,12 +73,14 @@ public:
     Item_Potion(string name, int increase_health): Item(name, Potion){
         m_increase_health = increase_health;
     }
+    //Makes a Health Potion that generates a range between 5-12
     Item_Potion(string name): Item(name, Potion){
         int randomNumberHealth = rand();
-        int potion_value = (randomNumberHealth % 8) + 4;
+        int potion_value = (randomNumberHealth % 8) + 5;
         m_increase_health = potion_value;
     }
     int getPotionRating() const {return m_increase_health;};
+    void get_pic_potion();
 };
 Item        pickRandItem();  //Picks Random Weapon, Armor, Potion
 Item_Weapon pickRandWeapon();

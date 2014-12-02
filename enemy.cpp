@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "enemy.h"
 #include "inventoryClasses.h"
+#include "combat.h"
 
 using namespace std;
 
@@ -55,11 +56,11 @@ int Enemy::getDefense()
 }
 
 //generate random option between 1 and 2, corresponding to weak attack or strong attack
-int Enemy::getCombatChoice(int& cooldown_heavy)
+int Enemy::getCombatChoice(struct Cooldowns &cds)
 {
-    if(cooldown_heavy)
+    if(cds.heavy)
     {
-        cooldown_heavy = 0;
+        cds.heavy = 0;
         return 1; //can only weak attack when heavy attack is on cooldown
     }
     return (rand() % 2) + 1;
@@ -87,23 +88,23 @@ int StrongerEnemy::getDefense()
 }
 
 //generate random option between 1 and 3. this means a StrongerEnemy can dodge as well as attack.
-int StrongerEnemy::getCombatChoice(int& cooldown_heavy, int& cooldown_dodge)
+int StrongerEnemy::getCombatChoice(struct Cooldowns &cds)
 {
     int randNum;
 
-    if(cooldown_heavy) //if heavy attack (option 2) is on cooldown, ensure that choice is either 1 or 3
+    if(cds.heavy) //if heavy attack (option 2) is on cooldown, ensure that choice is either 1 or 3
     {
         do
         {
             randNum = (rand() % 3) + 1;
         }while(randNum == 2);
-        cooldown_heavy = 0;
+        cds.heavy = 0;
 
     }
-    else if(cooldown_dodge) //if dodge (option 3) is on cooldown, generate a random number between 1 and 2
+    else if(cds.dodge) //if dodge (option 3) is on cooldown, generate a random number between 1 and 2
     {
         randNum = (rand() % 2) + 1;
-        cooldown_dodge = 0;
+        cds.dodge = 0;
     }
     else
     {

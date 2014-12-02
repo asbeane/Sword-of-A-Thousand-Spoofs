@@ -21,6 +21,8 @@ public:
     void setCurrentHP(int value);
     int getAttack();
     int getDefense();
+    void equipWeapon(Item_Weapon& weap);
+    void equipArmor(Item_Armor& arm);
     void outputInventory();
     friend ostream& operator<<(ostream& out, const Player& player);
 }

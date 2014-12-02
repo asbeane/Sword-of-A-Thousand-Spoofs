@@ -1,4 +1,7 @@
-using namespace
+using namespace std;
+
+enum combatmoves{WEAKATTACK = 1, HEAVYATTACK = 2, DODGE = 3, BLOCK = 4};
+typedef enum combatmoves Action;
 
 struct Cooldowns
 {

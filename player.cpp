@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Player::Player(int hp, int attk, int def): inv(), equipped_weapon("(no weapon)", 0), equipped_armor("(no armor)", 0)
+Player::Player(int hp, int attk, int def): inv(), equipped_weapon("Paper Sword", 0), equipped_armor("Torn Clothes", 0)
 {
     MaxHP = hp;
     currentHP = hp;
@@ -52,6 +52,20 @@ int Player::getAttack()
 int Player::getDefense()
 {
     return defense + equipped_armor.getArmorRating();
+}
+
+void Player::equipWeapon(Item_Weapon& weap)
+{
+    Item_Weapon temp = equipped_weapon;
+    equipped_weapon = weap;
+    weap = temp;
+}
+
+void Player::equipArmor(Item_Armor& arm)
+{
+    Item_Armor temp = equipped_armor;
+    equipped_armor = arm;
+    arm = temp;
 }
 
 void Player::outputInventory()

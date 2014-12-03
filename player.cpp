@@ -77,9 +77,9 @@ void Player::outputInventory()
 
 ostream& operator<<(ostream& out, const Player& player)
 {
-    out << "Player Stats\n\tHealth:\tAttack:\tDefense:\t";
-    out << "\t" << player.currentHP << "/" << player.MaxHP << "\t" << player.attack << "\t" << player.defense << "\n";
-    out << "Player Equipment\n";
+    out << "\tPLAYER STATS\nHealth:\tAttack:\tDefense:\n";
+    out << player.currentHP << "/" << player.MaxHP << "\t" << player.attack << "\t" << player.defense << "\n";
+    out << "\tPLAYER EQUIPMENT\n";
     out << player.equipped_weapon << player.equipped_armor;
     return out;
 }

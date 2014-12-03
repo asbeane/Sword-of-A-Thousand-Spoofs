@@ -16,6 +16,7 @@ void displayStats(Player &player, Enemy &enemy);
 int combat(Player &player)
 {
     BestEnemy basicenemy("Goblin", 15, 4, 3);
+
     struct Cooldowns playercds;
     struct Cooldowns enemycds;
     Action playerAction;

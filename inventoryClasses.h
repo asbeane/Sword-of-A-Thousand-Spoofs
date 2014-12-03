@@ -1,6 +1,7 @@
 #ifndef inventoryClasses_H
 #define inventoryClasses_H
 #include <iostream>
+#include <cstdlib>
 
 
 using namespace std;
@@ -83,8 +84,8 @@ public:
     void get_pic_potion();
 };
 Item        pickRandItem();  //Picks Random Weapon, Armor, Potion
-Item_Weapon pickRandWeapon();
-Item_Armor  pickRandArmor();
+Item_Weapon pickRandWeapon(bool showPics);
+Item_Armor  pickRandArmor(bool showPics);
 Item_Potion pickRandPotion();
 
 #endif

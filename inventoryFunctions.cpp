@@ -9,6 +9,9 @@ using namespace std;
 /***************************************************************************************/
 /*****************************Class Item function calls*********************************/
 /***************************************************************************************/
+
+int Item::item_timestamp = 0;
+
 ostream& operator << (ostream& out, const Item& inventory)
 {
     out << "Item Name:" << std::setw(14) << "Qty:" << std::setw(7) << "Type:" << std::setw(9) << "Bonus:\n";
@@ -150,7 +153,7 @@ void Item_Armor::get_pic_chest()
             "        | \\ |*|:::|*| / |        \n"
             "        |  \\|*|:::|*|/  |        \n"
             "        |   *********   |        \n"
-            "         \\\~~~~~~~~~~~~~/       \n\n";
+            "         \\~~~~~~~~~~~~~/       \n\n";
 }
 /***************************************************************************************/
 /**********************Class Item_Potion Function Calls*********************************/
@@ -196,11 +199,11 @@ Item pickRandItem()
     switch(randomItem)
     {
     case 1:{
-        Item_Weapon random_weapon = pickRandWeapon();
+        Item_Weapon random_weapon = pickRandWeapon(true);
         cout << random_weapon;
         return random_weapon;}
     case 2:{
-        Item_Armor random_Armor = pickRandArmor();
+        Item_Armor random_Armor = pickRandArmor(true);
         cout << random_Armor;
         return random_Armor;}
     case 3:{
@@ -214,7 +217,7 @@ Item pickRandItem()
     }
 }
 
-Item_Weapon pickRandWeapon()
+Item_Weapon pickRandWeapon(bool showPics)
 {
     //rand() function generates a random number between 0 and at least 32767
     //If you want to know RAND_MAX in cout
@@ -227,40 +230,48 @@ Item_Weapon pickRandWeapon()
     {
     case 2:{
         Item_Weapon axe2("Axe of Devastation", 10);
-        axe2.get_pic_axe();
+        if(showPics)
+            axe2.get_pic_axe();
         return axe2;}
     case 3:{
         Item_Weapon sword3("Sword of Glory    ", 8);
-        sword3.get_pic_sword();
+        if(showPics)
+            sword3.get_pic_sword();
         return sword3;}
     case 6:{
         Item_Weapon sword2("Sword of Silver   ", 6);
-        sword2.get_pic_sword();
+        if(showPics)
+            sword2.get_pic_sword();
         return sword2;}
     case 7:{
         Item_Weapon sword1("Sword of Steel    ", 4);
-        sword1.get_pic_sword();
+        if(showPics)
+            sword1.get_pic_sword();
         return sword1;}
     case 8:{
         Item_Weapon mace1("Mace of Light     ", 6);
-        mace1.get_pic_mace();
+        if(showPics)
+            mace1.get_pic_mace();
         return mace1;}
     case 11:{
         Item_Weapon mace2("Mace of Windu     ", 8);
-        mace2.get_pic_mace();
+        if(showPics)
+            mace2.get_pic_mace();
         return mace2;}
     case 12:{
         Item_Weapon mace3("DMMB Mace         ", 10);// Dont mace me bro
-        mace3.get_pic_mace();
+        if(showPics)
+            mace3.get_pic_mace();
         return mace3;}
     default:{
         Item_Weapon axe1("Axe of Okayness   ", 2);
-        axe1.get_pic_axe();
+        if(showPics)
+            axe1.get_pic_axe();
         return axe1;}
     }
 }
 
-Item_Armor pickRandArmor()
+Item_Armor pickRandArmor(bool showPics)
 {
     //rand() function generates a random number between 0 and at least 32767
     //If you want to know RAND_MAX in cout
@@ -273,35 +284,43 @@ Item_Armor pickRandArmor()
     {
     case 2:{
         Item_Armor shield1("Shield of Hylian  ", 5);
-        shield1.get_pic_shield();
+        if(showPics)
+            shield1.get_pic_shield();
         return shield1;}
     case 3:{
         Item_Armor helm1("Helmet of 6 Sense ", 4);
-        helm1.get_pic_helmet();
+        if(showPics)
+            helm1.get_pic_helmet();
         return helm1;}
     case 6:{
         Item_Armor shield2("Shield of Know    ", 3);
-        shield2.get_pic_shield();
+        if(showPics)
+            shield2.get_pic_shield();
         return shield2;}
     case 7:{
         Item_Armor helm2("Helmet of Steel   ", 2);
-        helm2.get_pic_helmet();
+        if(showPics)
+            helm2.get_pic_helmet();
         return helm2;}
     case 8:{
         Item_Armor chest3("Chest of Leather  ", 3);
-        chest3.get_pic_chest();
+        if(showPics)
+            chest3.get_pic_chest();
         return chest3;}
     case 11:{
         Item_Armor chest2("Chest Tanooki Suit", 4);
-        chest2.get_pic_chest();
+        if(showPics)
+            chest2.get_pic_chest();
         return chest2;}
     case 12:{
         Item_Armor chest1("Chest of Mark IV  ", 5);// Dont mace me bro
-        chest1.get_pic_chest();
+        if(showPics)
+            chest1.get_pic_chest();
         return chest1;}
     default:{
         Item_Armor shield3("Shield of Wood    ", 2);
-        shield3.get_pic_shield();
+        if(showPics)
+            shield3.get_pic_shield();
         return shield3;}
     }
 }

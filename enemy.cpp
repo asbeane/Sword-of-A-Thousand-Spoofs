@@ -13,7 +13,7 @@ Enemy::Enemy(string _name, int hp, int attk, int def)
 {
     name = _name;
     MaxHP = hp;
-    currentHP = hp
+    currentHP = hp;
     attack = attk;
     defense = def;
 }
@@ -56,14 +56,14 @@ int Enemy::getDefense()
 }
 
 //generate random option between 1 and 2, corresponding to weak attack or strong attack
-int Enemy::getCombatChoice(struct Cooldowns &cds)
+Action Enemy::getCombatChoice(struct Cooldowns &cds)
 {
     if(cds.heavy)
     {
         cds.heavy = 0;
-        return 1; //can only weak attack when heavy attack is on cooldown
+        return WEAKATTACK; //can only weak attack when heavy attack is on cooldown
     }
-    return (rand() % 2) + 1;
+    return (Action)((rand() % 2) + 1);
 }
 
 /********************************
@@ -71,10 +71,10 @@ int Enemy::getCombatChoice(struct Cooldowns &cds)
  ********************************/
 
 StrongerEnemy::StrongerEnemy(string _name, int hp, int attk, int def)
-: Enemy(_name, hp, attk, def)
+: Enemy(_name, hp, attk, def), equipped_weapon("default_weapon", 0), equipped_armor("default_armor", 0)
 {
-    equipped_weapon = pickRandWeapon();
-    equipped_armor = pickRandArmor();
+    equipped_weapon = pickRandWeapon(false);
+    equipped_armor = pickRandArmor(false);
 }
 
 int StrongerEnemy::getAttack()
@@ -88,7 +88,7 @@ int StrongerEnemy::getDefense()
 }
 
 //generate random option between 1 and 3. this means a StrongerEnemy can dodge as well as attack.
-int StrongerEnemy::getCombatChoice(struct Cooldowns &cds)
+Action StrongerEnemy::getCombatChoice(struct Cooldowns &cds)
 {
     int randNum;
 
@@ -111,5 +111,44 @@ int StrongerEnemy::getCombatChoice(struct Cooldowns &cds)
         randNum = (rand() % 3) + 1;
     }
 
-    return randNum;
+    return (Action)randNum;
+}
+
+BestEnemy::BestEnemy(string _name, int hp, int attk, int def)
+: StrongerEnemy(_name, hp, attk, def)
+{
+}
+
+Action BestEnemy::getCombatChoice(struct Cooldowns &cds)
+{
+    int randNum;
+
+    if(cds.heavy) //if heavy attack (option 2) is on cooldown, ensure that choice is either 1, 3, or 4
+    {
+        do
+        {
+            randNum = (rand() % 4) + 1;
+        }while(randNum == 2);
+        cds.heavy = 0;
+
+    }
+    else if(cds.dodge) //if dodge (option 3) is on cooldown, ensure that choice is either 1, 2, or 4
+    {
+        do
+        {
+            randNum = (rand() % 4) + 1;
+        }while(randNum == 3);
+        cds.dodge = 0;
+    }
+    else if(cds.block)
+    {
+        randNum = (rand() % 3) + 1; //option between 1 and 3 if option 4 is on cooldown
+        cds.block = 0;
+    }
+    else
+    {
+        randNum = (rand() % 4) + 1;
+    }
+
+    return (Action)randNum;
 }

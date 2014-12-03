@@ -1,10 +1,14 @@
-#include <string>
+#ifndef ENEMY_H
+#define ENEMY_H
 
+#include <string>
+#include "inventoryClasses.h"
+#include "combat.h"
 using namespace std;
 
 class Enemy
 {
-private:
+protected:
     string name;
     int MaxHP;
     int currentHP;
@@ -18,18 +22,25 @@ public:
     void setCurrentHP(int value);
     int getAttack();
     int getDefense();
-    int getCombatChoice(int& cooldown_heavy);
+    Action getCombatChoice(struct Cooldowns &cds);
 };
 
 class StrongerEnemy: public Enemy
 {
-private:
+protected:
     Item_Weapon equipped_weapon;
     Item_Armor equipped_armor;
 public:
     StrongerEnemy(string _name, int hp, int attk, int def);
     int getAttack();
     int getDefense();
-    int getCombatChoice(int& cooldown_heavy, int& cooldown_dodge);
+    Action getCombatChoice(struct Cooldowns &cds);
 };
 
+class BestEnemy: public StrongerEnemy
+{
+public:
+    BestEnemy(string _name, int hp, int attk, int def);
+    Action getCombatChoice(struct Cooldowns &cds);
+};
+#endif // ENEMY_H

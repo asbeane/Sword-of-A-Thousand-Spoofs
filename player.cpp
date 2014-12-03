@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Player::Player(int hp, int attk, int def): inv(), equipped_weapon("Paper Sword", 0), equipped_armor("Torn Clothes", 0)
+Player::Player(int hp, int attk, int def): /*inv(),*/ equipped_weapon("Paper Sword       ", 0), equipped_armor("Torn Clothes      ", 0)
 {
     MaxHP = hp;
     currentHP = hp;
@@ -68,16 +68,18 @@ void Player::equipArmor(Item_Armor& arm)
     arm = temp;
 }
 
+/*
 void Player::outputInventory()
 {
     cout << inv;
 }
+*/
 
 ostream& operator<<(ostream& out, const Player& player)
 {
-    out << "Player Stats\n\tHealth:\tAttack:\tDefense:\t"
+    out << "Player Stats\n\tHealth:\tAttack:\tDefense:\t";
     out << "\t" << player.currentHP << "/" << player.MaxHP << "\t" << player.attack << "\t" << player.defense << "\n";
-    out << "Player Equipment\n"
+    out << "Player Equipment\n";
     out << player.equipped_weapon << player.equipped_armor;
     return out;
 }

@@ -1,6 +1,8 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <iostream>
 #include "inventoryClasses.h"
-
 using namespace std;
 
 class Player
@@ -10,7 +12,7 @@ private:
     int currentHP;
     int attack;
     int defense;
-    Inventory inv;
+    //Inventory inv;
     Item_Weapon equipped_weapon;
     Item_Armor equipped_armor;
 public:
@@ -23,6 +25,7 @@ public:
     int getDefense();
     void equipWeapon(Item_Weapon& weap);
     void equipArmor(Item_Armor& arm);
-    void outputInventory();
+    //void outputInventory();
     friend ostream& operator<<(ostream& out, const Player& player);
-}
+};
+#endif // PLAYER_H

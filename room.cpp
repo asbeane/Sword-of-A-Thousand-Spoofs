@@ -1,25 +1,73 @@
 #include<iostream>
-#include<time.h>
+#include<cstdlib>
+#include<ctime>
 #include"room.h"
 
 /*Source File containing definition of class Room*/
 
 using namespace std;
-srand(time(NULL));
 
 Room::Room()
 {
-  //Seed random number generation likely at top of the file. Then utilize the rand for % 3, for 1/3 chance
-  //to generate an enemey, and an item.
-  //if rand % 3 == 1 give an item, else not
-  //if rand % 3 == 1 (re doing random) fight an enemy.
+	 int enemy_generator;
+	 int item_generator;
+	 visited = false;
+	 north = -1;
+	 south = -1;
+	 east = -1;
+	 west = -1;
+	 enemy_generator = rand() % 2;
+	 if(enemy_generator == 1)
+	 {
+		  enemy = true;
+	 }
+	 else
+	 {
+		  enemy = false;
+	 }
 
-   
+    item_generator = rand() % 3;
+	 if(item_generator == 0 || item_generator ==1)
+	 {
+		  item = true;
+	 }
+	 else
+	 {
+		  item = false;
+	 }
+	
+	 
+	 
 }
 
 Room::Room(int nrth, int sth, int est, int wst)
 {
+	 int enemy_generator;
+	 int item_generator;
+	 visited = false;
+	 north = nrth;
+	 south = sth;
+	 east = est;
+	 west = wst;
+	 enemy_generator = rand() %2;
+	 if(enemy_generator == 1)
+	 {
+		  enemy = true;
+	 }
+	 else
+	 {
+		  enemy = false;
+	 }
 
+    item_generator = rand() %3;
+	 if(item_generator == 0 || item_generator ==1)
+	 {
+		  item = true;
+	 }
+	 else
+	 {
+		  item = false;
+	 }
 }
 
 bool Room::set_visited()
@@ -48,3 +96,13 @@ int Room::get_west()
    return west;
 }
 
+
+bool Room::set_enemy(bool value)
+{
+	 enemy = value;
+}
+
+bool Room::set_item(bool value)
+{
+	 item = value;
+}

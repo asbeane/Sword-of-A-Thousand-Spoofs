@@ -1,4 +1,4 @@
-#ifndef
+#ifndef ROOM_H
 #define ROOM_H
 
 /*Class Declaration of Room Class*/
@@ -30,7 +30,8 @@ class Room
 
 
       /***********************************************************************
-      *Constructor with parameters                                           *        *      *Create a Room object and decide if an enemy and/or item is present in *
+      *Constructor with parameters                                           *        
+      *Create a Room object and decide if an enemy and/or item is present in *
       *the room. Each with an uncorrelated 1/3 chance of appearing.          *
       *                                                                      *
       *@param nrth,sth,est,wst                                               *
@@ -72,4 +73,19 @@ class Room
       *                                                                      *
       ************************************************************************/
       int get_west();
+
+		/***********************************************************************
+      *Sets the enemy value given as argument via the formal parameter @value*
+      *                                                                      *
+      ************************************************************************/
+		bool set_enemy(bool value);
+
+
+		/***********************************************************************
+      *Sets the item value given as argument via the formal parameter @value *
+      *                                                                      *
+      ************************************************************************/
+		bool set_item(bool value);
 };
+
+#endif

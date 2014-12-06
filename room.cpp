@@ -40,7 +40,7 @@ Room::Room()
 	 
 }
 
-Room::Room(int nrth, int sth, int est, int wst)
+Room::Room(int nrth, int sth, int est, int wst, int to_x, int to_y)
 {
 	 int enemy_generator;
 	 int item_generator;
@@ -49,6 +49,8 @@ Room::Room(int nrth, int sth, int est, int wst)
 	 south = sth;
 	 east = est;
 	 west = wst;
+	 x = to_x;
+	 y = to_y;
 	 enemy_generator = rand() %2;
 	 if(enemy_generator == 1)
 	 {
@@ -96,6 +98,15 @@ int Room::get_west()
    return west;
 }
 
+int Room::get_x()
+{
+	 return x;
+}
+
+int Room::get_y()
+{
+	 return y;
+}
 
 bool Room::set_enemy(bool value)
 {

@@ -17,6 +17,8 @@ class Room
       int south;
       int east;
       int west;
+		int x;
+		int y;
       
    
    public:
@@ -41,7 +43,7 @@ class Room
       *    wst sets member variable west to an int value.                    *
       *                                                                      *
        ***********************************************************************/
-      Room(int nrth, int sth, int est, int wst);
+      Room(int nrth, int sth, int est, int wst, int to_x, int to_y);
 
 
       /***********************************************************************
@@ -75,11 +77,22 @@ class Room
       int get_west();
 
 		/***********************************************************************
+      *Returns the value of integer member variable x                        *
+      *                                                                      *
+      ************************************************************************/
+		int get_x();
+
+		/***********************************************************************
+      *Returns the value of integer member variable x                        *
+      *                                                                      *
+      ************************************************************************/
+		int get_y();
+
+		/***********************************************************************
       *Sets the enemy value given as argument via the formal parameter @value*
       *                                                                      *
       ************************************************************************/
 		bool set_enemy(bool value);
-
 
 		/***********************************************************************
       *Sets the item value given as argument via the formal parameter @value *

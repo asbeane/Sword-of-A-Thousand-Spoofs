@@ -20,5 +20,5 @@ struct Cooldowns
     }
 };
 
-int combat(Player &player);
+int combat(Player &player, int room);
 #endif // COMBAT_H

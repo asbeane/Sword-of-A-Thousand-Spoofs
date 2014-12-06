@@ -12,7 +12,7 @@ private:
     int currentHP;
     int attack;
     int defense;
-    //Inventory inv;
+    Inventory inv;
     Item_Weapon equipped_weapon;
     Item_Armor equipped_armor;
 public:
@@ -23,9 +23,11 @@ public:
     void setCurrentHP(int value);
     int getAttack();
     int getDefense();
-    void equipWeapon(Item_Weapon& weap);
-    void equipArmor(Item_Armor& arm);
-    //void outputInventory();
+    void equipWeapon(Item_Weapon* weap);
+    void equipArmor(Item_Armor* arm);
+    void addToInventory(Item* item);
+    void outputInventory();
+    void useItem(int choice);
     friend ostream& operator<<(ostream& out, const Player& player);
 };
 #endif // PLAYER_H

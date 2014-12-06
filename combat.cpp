@@ -12,10 +12,14 @@ using namespace std;
 void displayOptions(struct Cooldowns &cds);
 Action getPlayerOption(struct Cooldowns &cds);
 void displayStats(Player &player, Enemy &enemy);
+Enemy* createEnemy(int room);
+void showPicKnight();
+void showPicTroll();
+void showPicGhoul();
 
-int combat(Player &player)
+int combat(Player &player, int room)
 {
-    BestEnemy basicenemy("Goblin", 15, 4, 3);
+    Enemy* basicenemy = createEnemy(room);
 
     struct Cooldowns playercds;
     struct Cooldowns enemycds;
@@ -24,17 +28,17 @@ int combat(Player &player)
 
     //make copy of player defense value so that the change made by heavy attack only applies to this battle
     int playerDef = player.getDefense();
-    int enemyDef = basicenemy.getDefense();
+    int enemyDef = basicenemy->getDefense();
 
     int damage;
     int healAmount = 5;
 
     //keep going while both player and enemy are alive
-    while(player.getCurrentHP() > 0 && basicenemy.getCurrentHP() > 0)
+    while(player.getCurrentHP() > 0 && basicenemy->getCurrentHP() > 0)
     {
-        displayStats(player, basicenemy);
+        displayStats(player, *basicenemy);
         playerAction = getPlayerOption(playercds);
-        enemyAction = basicenemy.getCombatChoice(enemycds);
+        enemyAction = basicenemy->getCombatChoice(enemycds);
 
         switch(playerAction)
         {
@@ -44,12 +48,12 @@ int combat(Player &player)
             case WEAKATTACK:
                 //deal damage to enemy
                 damage = player.getAttack() - enemyDef;
-                basicenemy.setCurrentHP(basicenemy.getCurrentHP() - damage);
+                basicenemy->setCurrentHP(basicenemy->getCurrentHP() - damage);
                 cout << "**You land a weak attack on the enemy, dealing " << damage << " damage**\n";
                 //if enemy not defeated, deal damage to player
-                if(basicenemy.getCurrentHP() > 0)
+                if(basicenemy->getCurrentHP() > 0)
                 {
-                    damage = basicenemy.getAttack() - playerDef;
+                    damage = basicenemy->getAttack() - playerDef;
                     player.setCurrentHP(player.getCurrentHP() - damage);
                     cout << "**The enemy hits you with a weak attack, dealing " << damage << " damage**\n";
                 }
@@ -57,16 +61,16 @@ int combat(Player &player)
             case HEAVYATTACK:
                 //deal damage to enemy
                 damage = player.getAttack() - enemyDef;
-                basicenemy.setCurrentHP(basicenemy.getCurrentHP() - damage);
+                basicenemy->setCurrentHP(basicenemy->getCurrentHP() - damage);
                 cout << "**You land a weak attack on the enemy, dealing " << damage << " damage**\n";
                 //if enemy not defeated, deal damage to player and lower player armor value
-                if(basicenemy.getCurrentHP() > 0)
+                if(basicenemy->getCurrentHP() > 0)
                 {
                     if(playerDef > 0)
                     {
                         playerDef--;
                     }
-                    damage = basicenemy.getAttack() - playerDef;
+                    damage = basicenemy->getAttack() - playerDef;
                     player.setCurrentHP(player.getCurrentHP() - damage);
                     enemycds.heavy = 1;
                     cout << "**The enemy lowers your armor and deals " << damage << " damage with a heavy attack**\n";
@@ -75,13 +79,13 @@ int combat(Player &player)
             case DODGE:
                 //deal damage to enemy
                 damage = player.getAttack() - enemyDef;
-                basicenemy.setCurrentHP(basicenemy.getCurrentHP() - damage);
+                basicenemy->setCurrentHP(basicenemy->getCurrentHP() - damage);
                 enemycds.dodge = 1;
                 cout << "**The enemy tried to dodge but you land a weak attack, dealing " << damage << " damage**\n";
                 break;
             case BLOCK:
                 //heal enemy
-                basicenemy.setCurrentHP(basicenemy.getCurrentHP() + healAmount);
+                basicenemy->setCurrentHP(basicenemy->getCurrentHP() + healAmount);
                 enemycds.block = 1;
                 cout << "**The enemy blocked your weak attack, taking a moment to regain some strength**\n";
                 break;
@@ -97,12 +101,12 @@ int combat(Player &player)
                     enemyDef--;
                 }
                 damage = player.getAttack() - enemyDef;
-                basicenemy.setCurrentHP(basicenemy.getCurrentHP() - damage);
+                basicenemy->setCurrentHP(basicenemy->getCurrentHP() - damage);
                 cout << "**You lower the enemy's armor and deal " << damage << " damage with a heavy attack**\n";
                 //if enemy not defeated, deal damage to player
-                if(basicenemy.getCurrentHP() > 0)
+                if(basicenemy->getCurrentHP() > 0)
                 {
-                    damage = basicenemy.getAttack() - playerDef;
+                    damage = basicenemy->getAttack() - playerDef;
                     player.setCurrentHP(player.getCurrentHP() - damage);
                     cout << "**The enemy hits you with a weak attack, dealing " << damage << " damage**\n";
                 }
@@ -114,16 +118,16 @@ int combat(Player &player)
                     enemyDef--;
                 }
                 damage = player.getAttack() - enemyDef;
-                basicenemy.setCurrentHP(basicenemy.getCurrentHP() - damage);
+                basicenemy->setCurrentHP(basicenemy->getCurrentHP() - damage);
                 cout << "**You lower the enemy's armor and deal " << damage << " damage with a heavy attack**\n";
                 //if enemy not defeated, deal damage to player and lower player armor value
-                if(basicenemy.getCurrentHP() > 0)
+                if(basicenemy->getCurrentHP() > 0)
                 {
                     if(playerDef > 0)
                     {
                         playerDef--;
                     }
-                    damage = basicenemy.getAttack() - playerDef;
+                    damage = basicenemy->getAttack() - playerDef;
                     player.setCurrentHP(player.getCurrentHP() - damage);
                     enemycds.heavy = 1;
                     cout << "**The enemy lowers your armor and deals " << damage << " damage with a heavy attack**\n";
@@ -131,7 +135,7 @@ int combat(Player &player)
                 break;
             case DODGE:
                 //deal damage to player
-                damage = basicenemy.getAttack() - playerDef;
+                damage = basicenemy->getAttack() - playerDef;
                 player.setCurrentHP(player.getCurrentHP() - damage);
                 enemycds.dodge = 1;
                 cout << "**The enemy dodged your heavy attack and countered you, dealing " << damage << " damage**\n";
@@ -139,7 +143,7 @@ int combat(Player &player)
             case BLOCK:
                 //deal damage to enemy
                 damage = player.getAttack() - enemyDef;
-                basicenemy.setCurrentHP(basicenemy.getCurrentHP() - damage);
+                basicenemy->setCurrentHP(basicenemy->getCurrentHP() - damage);
                 enemycds.block = 1;
                 cout << "**The enemy blocked but your heavy attack broke through, dealing " << damage << " damage**\n";
                 break;
@@ -151,14 +155,14 @@ int combat(Player &player)
             {
             case WEAKATTACK:
                 //deal damage to player
-                damage = basicenemy.getAttack() - playerDef;
+                damage = basicenemy->getAttack() - playerDef;
                 player.setCurrentHP(player.getCurrentHP() - damage);
                 cout << "**You tried dodging but the enemy hit you with a weak attack, dealing " << damage << " damage**\n";
                 break;
             case HEAVYATTACK:
                 //deal damage to enemy
                 damage = player.getAttack() - enemyDef;
-                basicenemy.setCurrentHP(basicenemy.getCurrentHP() - damage);
+                basicenemy->setCurrentHP(basicenemy->getCurrentHP() - damage);
                 enemycds.heavy = 1;
                 cout << "**You dodged the enemy's heavy attack and countered, dealing " << damage << " damage**\n";
                 break;
@@ -185,7 +189,7 @@ int combat(Player &player)
                 break;
             case HEAVYATTACK:
                 //deal damage to player
-                damage = basicenemy.getAttack() - playerDef;
+                damage = basicenemy->getAttack() - playerDef;
                 player.setCurrentHP(player.getCurrentHP() - damage);
                 enemycds.heavy = 1;
                 cout << "You blocked but the enemy's heavy attack broke through, dealing " << damage << " damage**\n";
@@ -208,14 +212,15 @@ int combat(Player &player)
         }
     }
 
+    delete basicenemy;
     if(player.getCurrentHP() <= 0) //player died
     {
-        cout << "\nYOU HAVE DIED";
+        cout << "\nYOU HAVE DIED\n";
         return 0;
     }
     else //enemy died
     {
-        cout << "\nYOU HAVE DEFEATED YOUR FOE";
+        cout << "\nYOU HAVE DEFEATED YOUR FOE\n";
         return 1;
     }
 
@@ -240,7 +245,7 @@ void displayOptions(struct Cooldowns &cds)
     cout << "Your choice: ";
 }
 
-Action getPlayerOption(struct Cooldowns &cds)
+Action getPlayerOption(struct Cooldowns &cds) //Action is the enum type
 {
     int option;
     bool correctInput;
@@ -252,7 +257,7 @@ Action getPlayerOption(struct Cooldowns &cds)
 
         cin >> option;
 
-        if(!cin)
+        if(!cin) //make sure that input was actually an integer
         {
             cout << "Enter the NUMBER of your choice: ";
             correctInput = false;
@@ -268,17 +273,17 @@ Action getPlayerOption(struct Cooldowns &cds)
             //ensure cannot choose heavy attack (option #2) if it is on cooldown
             if(cds.heavy && option == 2)
             {
-                cout << "Heavy Attack was used last turn and cannot be used again yet.\nTry again:";
+                cout << "Heavy Attack was used last turn and cannot be used again yet.\nTry again: ";
                 correctInput = false;
             }
             if(cds.dodge && option == 3)
             {
-                cout << "Dodge was used last turn and cannot be used again yet.\nTry again:";
+                cout << "Dodge was used last turn and cannot be used again yet.\nTry again: ";
                 correctInput = false;
             }
             if(cds.block && option == 4)
             {
-                cout << "Block was used last turn and cannot be used again yet.\nTry again:";
+                cout << "Block was used last turn and cannot be used again yet.\nTry again: ";
                 correctInput = false;
             }
         }
@@ -300,4 +305,106 @@ void displayStats(Player &player, Enemy &enemy)
 {
     cout << "\n/////PLAYER\t\t\t\t ENEMY\\\\\\\\\\\n";
     cout << "/////HP: " << setw(2) << player.getCurrentHP() << "\t\t\t\t" << setw(2) << enemy.getCurrentHP() << " :HP\\\\\\\\\\\n";
+}
+
+Enemy* createEnemy(int room)
+{
+    int BestEnemyLowerLimit = 13;
+    int StrongerEnemyLowerLimit = 8;
+    int EnemyLowerLimit = 1;
+    int enemyHP;
+
+    Enemy* enemy;
+
+    if(room >= BestEnemyLowerLimit)
+    {
+        enemyHP = (rand()%8)+18; //random number between 18 and 25
+        enemy = new BestEnemy("Rival Adventurer", enemyHP, 4, 4);
+        showPicKnight();
+        cout << "Upon entering this room, you encounter a " << enemy->getName() << ".\nHe attacks you, determined to prevent you from finding the treasure first!\n";
+        cout << "~Be careful: The " << enemy->getName() << " will certainly know all the same moves as you!\n";
+        return enemy;
+    }
+    if(room >= StrongerEnemyLowerLimit)
+    {
+        enemyHP = (rand()%7)+12; //random number between 12 and 18
+        enemy = new StrongerEnemy("Troll", enemyHP, 4, 2);
+        showPicTroll();
+        cout << "Upon entering this room, you encounter a " << enemy->getName() << ".\nIt attacks you, enraged from being disturbed.\n";
+        cout << "~Be careful: A " << enemy->getName() << " is able to dodge as well as attack.\n";
+        return enemy;
+    }
+
+    enemyHP = (rand()%5)+8; //random number between 8 and 12
+    enemy = new Enemy("Ghoul", enemyHP, 4, 2);
+    showPicGhoul();
+    cout << "Upon entering this room, you encounter a " << enemy->getName() << ".\nIt becomes startled and attacks you.\n";
+    cout << "~Note that a " << enemy->getName() << " is not too bright and only knows how to attack.\n";
+    return enemy;
+}
+
+void showPicKnight()
+{
+    cout << endl;
+    cout << "       .                   \n"
+            "      / \\                  \n"
+            "      | |                  \n"
+            "      |.|                  \n"
+            "      |.|                  \n"
+            "      |:|      __          \n"
+            "    ,_|:|_,   /  )         \n"
+            "      (Oo    / _I_         \n"
+            "       +\\ \\  || __|        \n"
+            "          \\ \\||___|        \n"
+            "            \\ /.:.\\-\\      \n"
+            "             |.:. /-----\\  \n"
+            "             |___|::oOo::| \n"
+            "             /   |:<_T_>:| \n"
+            "            |_____\\ ::: /  \n"
+            "             | |  \\ \\:/    \n"
+            "             | |   | |     \n"
+            "             \\ /   | \\___  \n"
+            "             / |   \\_____\\ \n"
+            "             `-'           \n\n";
+}
+
+void showPicTroll()
+{
+    cout << endl;
+    cout << "          |\\  ,,,,,  /|        \n"
+            "          | \\/_   _\\/ |        \n"
+            "   /\\     (_    \"    _)        \n"
+            "   \\ \\      (  ,--, )          \n"
+            "   / /    ,,,\\__-__/,,,        \n"
+            "   \\ \\   ,,,,\"\"\"\"\"\"\",,,,  ,,,, \n"
+            "   /_/   |  |\"\"\"\"\"\"\"(  ) ,(  )    \n"
+            "  [!!!]-'  / \"\"\"\"\"\"\" \\  \\ / /  \n"
+            "   |!|----' \"\"\"\"\"\"\"\"\" `,___/   \n"
+            "            ;;;;;;;;;          \n"
+            "            \"\"\"\"\"\"\"\"\"          \n"
+            "            \"\"\"\" \"\"\"\"          \n"
+            "            \"\"\"   \"\"\"          \n"
+            "           _\"\",   ,\"\"_         \n"
+            "          (___)   (___)        \n\n";
+}
+
+void showPicGhoul()
+{
+    cout << endl;
+    cout << "                 ,____     \n"
+            "                  |---.\\   \n"
+            "          ___     |    `   \n"
+            "         / .-\\  ./=)       \n"
+            "        |  |\"|_/\\/|        \n"
+            "        ;  |-;| /_|        \n"
+            "       / \\_| |/ \\ |        \n"
+            "      /      \\/\\( |        \n"
+            "      |   /  |` ) |        \n"
+            "      /   \\ _/    |        \n"
+            "     /--._/  \\    |        \n"
+            "     `/|)    |    /        \n"
+            "       /     |   |         \n"
+            "     .'      |   |         \n"
+            "    /         \\  |         \n"
+            "   (_.-.__.__./  /         \n\n";
 }

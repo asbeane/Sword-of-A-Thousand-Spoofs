@@ -73,8 +73,12 @@ Action Enemy::getCombatChoice(struct Cooldowns &cds)
 StrongerEnemy::StrongerEnemy(string _name, int hp, int attk, int def)
 : Enemy(_name, hp, attk, def), equipped_weapon("default_weapon", 0), equipped_armor("default_armor", 0)
 {
-    equipped_weapon = pickRandWeapon(false);
-    equipped_armor = pickRandArmor(false);
+    Item_Weapon* weap = pickRandWeapon(false);
+    Item_Armor* arm = pickRandArmor(false);
+    equipped_weapon = *weap;
+    equipped_armor = *arm;
+    delete weap;
+    delete arm;
 }
 
 int StrongerEnemy::getAttack()

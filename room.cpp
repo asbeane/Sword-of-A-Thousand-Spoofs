@@ -108,6 +108,13 @@ int Room::get_y()
 	 return y;
 }
 
+bool Room::get_enemy()
+{
+	 return enemy;
+}
+
+bool Room::get_item()
+
 bool Room::set_enemy(bool value)
 {
 	 enemy = value;

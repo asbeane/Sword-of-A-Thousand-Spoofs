@@ -35,9 +35,9 @@ Room::Room()
 	 {
 		  item = false;
 	 }
-	
-	 
-	 
+
+
+
 }
 
 Room::Room(int nrth, int sth, int est, int wst, int to_x, int to_y)
@@ -112,8 +112,6 @@ bool Room::get_enemy()
 {
 	 return enemy;
 }
-
-bool Room::get_item()
 
 bool Room::set_enemy(bool value)
 {

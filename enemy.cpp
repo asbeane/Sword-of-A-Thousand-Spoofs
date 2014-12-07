@@ -118,6 +118,10 @@ Action StrongerEnemy::getCombatChoice(struct Cooldowns &cds)
     return (Action)randNum;
 }
 
+/********************************
+ *      BESTENEMY FUNCTIONS     *
+ ********************************/
+
 BestEnemy::BestEnemy(string _name, int hp, int attk, int def)
 : StrongerEnemy(_name, hp, attk, def)
 {

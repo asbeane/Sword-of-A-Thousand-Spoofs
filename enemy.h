@@ -16,7 +16,7 @@ protected:
     int defense;
 public:
     Enemy(string _name, int hp, int attk, int def);
-    virtual ~Enemy(){cout << "DESTROYING ENEMY\n";}
+    virtual ~Enemy(){}
     string getName();
     int getMaxHP();
     int getCurrentHP();
@@ -33,7 +33,7 @@ protected:
     Item_Armor equipped_armor;
 public:
     StrongerEnemy(string _name, int hp, int attk, int def);
-    ~StrongerEnemy(){cout << "DESTROYING STRONGERENEMY\n";}
+    ~StrongerEnemy(){}
     int getAttack();
     int getDefense();
     Action getCombatChoice(struct Cooldowns &cds);
@@ -43,7 +43,7 @@ class BestEnemy: public StrongerEnemy
 {
 public:
     BestEnemy(string _name, int hp, int attk, int def);
-    ~BestEnemy(){cout << "DESTROYING BESTENEMY\n";}
+    ~BestEnemy(){}
     Action getCombatChoice(struct Cooldowns &cds);
 };
 #endif // ENEMY_H

@@ -27,7 +27,7 @@ Room::Room()
 	 }
 
     item_generator = rand() % 3;
-	 if(item_generator == 0 || item_generator ==1)
+	 if(item_generator != 0)
 	 {
 		  item = true;
 	 }
@@ -113,12 +113,17 @@ bool Room::get_enemy()
 	 return enemy;
 }
 
-bool Room::set_enemy(bool value)
+bool Room::get_item()
+{
+    return item;
+}
+
+void Room::set_enemy(bool value)
 {
 	 enemy = value;
 }
 
-bool Room::set_item(bool value)
+void Room::set_item(bool value)
 {
 	 item = value;
 }

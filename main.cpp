@@ -12,6 +12,7 @@ using namespace std;
 bool display_choices(Player& playerA, Dungeon& dunA);
 void display_inventory_choices(Player& playerA);
 bool display_movement_choices(Player& playerA, Dungeon& dunA);
+void display_gameover();
 
 //Max_CLEAR is used for buffer, if more characters  are inputed above max
 //it will crash during certain inputs. You could #include limits to get max buffer.
@@ -241,10 +242,12 @@ bool display_movement_choices(Player& playerA, Dungeon& dunA)
             if(randNum == 0)
             {
                 system("cls");
-                cout << "\nAs you stand basking in your glory, some hooligan stabs you in the back\n";
-                cout << "and runs off with the Sword Of A Thousand Spoofs.\n";
-                //cout << "Turns out just having it in your hands isn't enough to help you.\n";
-                cout << "~GAME OVER~\n";
+                cout << "\nAs you stand basking in your glory...\n";
+                cout << "~~~~~A WILD HOOLIGAN APPEARS!~~~~~\n";
+                cout << "Hooligan uses \"stab you in the back\" \nand runs off with the Sword Of A Thousand Spoofs.\n";
+                cout << "Next time try a different path to shake off that stupid bandit following you.\n";
+                system("PAUSE");
+                display_gameover();
             }
             return false;
         }
@@ -254,13 +257,13 @@ bool display_movement_choices(Player& playerA, Dungeon& dunA)
             cont = combat(playerA, roomNumber);
             if(cont == false)
             {
-                system("cls");
-                cout << "~GAME OVER~\n";
+                display_gameover();
                 return false;
             }
         }
         if(currentRoom->get_item())
         {
+
             system("cls");
             cout << "\nYou found an item in this room!\n";
             playerA.addToInventory(pickRandItem());
@@ -278,4 +281,20 @@ bool display_movement_choices(Player& playerA, Dungeon& dunA)
 
     }while(exit != true);
     return true; //game is still running
+}
+
+void display_gameover()
+{
+    system("cls");
+    cout << "*****************************************\n";
+    Sleep(1 * 350);
+    for(int i = 0; i < 10; i++)
+    {
+        if(i == 5)
+            cout << "*~~~~~~~~~~~~~~~GAME OVER~~~~~~~~~~~~~~~*\n";
+
+            cout << "*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\n";
+        Sleep(1 * 150);
+    }
+    cout << "*****************************************\n";
 }

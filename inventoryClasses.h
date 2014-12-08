@@ -47,7 +47,7 @@ protected:
 public:
     //constructor with parameters, Weapon = Category already set
     Item_Weapon(string name, int weapon_damage): Item(name, Weapon){m_weapon_damage = weapon_damage;}
-    ~Item_Weapon(){cout << "DESTROYING WEAPON\n";} //Destructor
+    ~Item_Weapon(){} //Destructor
     int getWeaponDamage() const {return m_weapon_damage;};
     void output(ostream& out) const;
     void get_pic_axe();
@@ -72,7 +72,7 @@ public:
     Item_Armor(string name, int armor_defense): Item(name, Armor){
         m_armor_defense = armor_defense;
     }
-    ~Item_Armor(){cout << "DESTROYING ARMOR\n";}
+    ~Item_Armor(){}
     int getArmorRating() const {return m_armor_defense;};
     void get_pic_shield();
     void get_pic_helmet();
@@ -103,7 +103,7 @@ public:
         m_increase_health = potion_value;
         m_increase_maxhealth = 0;
     }
-    ~Item_Potion(){cout << "DESTROYING POTION\n";}
+    ~Item_Potion(){}
     int getPotionRating() const {return m_increase_health;}
     int getMaxIncr() const {return m_increase_maxhealth;}
     void get_pic_potion();

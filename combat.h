@@ -39,9 +39,9 @@ struct Cooldowns
  * CHANGED.
  *
  * The return value of this function indicates the outcome of the battle.
- *      returns a 1 if the player wins
- *      returns a 0 if the player dies
+ *      returns true if the player wins
+ *      returns false if the player dies
  **/
-int combat(Player &player, int room);
+bool combat(Player &player, int room);
 
 #endif // COMBAT_H

@@ -20,22 +20,22 @@ class Room
       int west;
 		int x;
 		int y;
-      
-   
+
+
    public:
       /***********************************************************************
       *Default Constructor                                                   *
       *                                                                      *
       *Create a Room object and decide if an enemy and/or item is present in *
-      *the room. Each with an uncorrelated 1/3 chance of appearing.          *  
+      *the room. Each with an uncorrelated 1/3 chance of appearing.          *
        ***********************************************************************/
       Room();
 
 
       /***********************************************************************
-      *Constructor with parameters                                           *        
+      *Constructor with parameters                                           *
       *Create a Room object and decide if an enemy and/or item is present in *
-      *the room. Each with an uncorrelated 1/3 chance of appearing.          *
+      *the room. 50% chance of enemy, 75% chance of item.         .          *
       *                                                                      *
       *@param nrth,sth,est,wst                                               *
       *    nrth sets member variable north to an int value.                  *
@@ -106,13 +106,13 @@ class Room
       *Sets the enemy value given as argument via the formal parameter @value*
       *                                                                      *
       ***********************************************************************/
-		bool set_enemy(bool value);
+		void set_enemy(bool value);
 
 		/***********************************************************************
       *Sets the item value given as argument via the formal parameter @value *
       *                                                                      *
       ************************************************************************/
-		bool set_item(bool value);
+		void set_item(bool value);
 };
 
 #endif

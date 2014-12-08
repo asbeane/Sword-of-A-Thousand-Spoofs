@@ -56,6 +56,7 @@ int Player::getDefense()
 
 void Player::equipWeapon(Item_Weapon* weap)
 {
+    //swap *weap with equipped weapon
     Item_Weapon temp = equipped_weapon;
     equipped_weapon = *weap;
     *weap = temp;
@@ -63,6 +64,7 @@ void Player::equipWeapon(Item_Weapon* weap)
 
 void Player::equipArmor(Item_Armor* arm)
 {
+    //swap *arm with equipped armor
     Item_Armor temp = equipped_armor;
     equipped_armor = *arm;
     *arm = temp;

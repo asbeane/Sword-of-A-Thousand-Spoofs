@@ -428,13 +428,14 @@ void Inventory::add(Item* item)
 void Inventory::output()
 {
     cout << "\n~YOUR INVENTORY~\n";
-    cout << "   ";
+    cout << "    ";
     displayHeader();
     int i = 1;
     vector<Item*>::iterator itr;
     for(itr = m_inventory.begin(); itr != m_inventory.end(); itr++, i++)
     {
-        cout << i << ") " << **itr;
+        cout << setw(2) << right << i;
+        cout << ") " << **itr;
     }
     cout << endl;
 }

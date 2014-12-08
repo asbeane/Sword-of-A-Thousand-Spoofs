@@ -13,7 +13,7 @@ class Dungeon
 {
     protected:
         vector<Room> dungeon;
-        char ascii_map[6][5];
+        char ascii_map[8][9];
         Room* currentRoom;
     public:
 		  /***********************************************************
@@ -31,7 +31,7 @@ class Dungeon
         *references to the (up to) four choices, given the current *
         *room. Move should also update the current map by placing  *
         *an at '@' for the current room. An '*' for visited rooms  *
-        *and a ' ' (space) for unvisited                           *                 
+        *and a ' ' (space) for unvisited                           *
         *@param index                                              *
         *     Index referring to which (by index) is the next room *
         *     room selection.                                      *
@@ -41,18 +41,23 @@ class Dungeon
  		  ***********************************************************/
         Room* move(int index);
 
+        Room* getCurrentRoom()
+        {
+            return currentRoom;
+        }
+
 		  /**********************************************************
 		  *Overloaded C++ output (<<) operator.                     *
         *Will be designed to display ascii_map                    *
         *                                                         *
         *@param outs                                              *
         *      output object                                      *
-        *                                                         *      
-        *@param object                                            * 
+        *                                                         *
+        *@param object                                            *
         *      Dungeon objec to display map for                   *
         *                                                         *
         *Displays to the given output (object) buffer the two-    *
-        *dimensional character array member ascii_map[6][5]       *     
+        *dimensional character array member ascii_map[6][5]       *
         **********************************************************/
 		  friend ostream& operator <<(ostream &outs, const Dungeon &object);
 };

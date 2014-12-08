@@ -9,7 +9,7 @@ using namespace std;
 
 Dungeon::Dungeon()
 {
-/*Start Room has no item or enemy*/
+    /*Start Room has no item or enemy*/
     dungeon.push_back(Room(7,-1,2,1,5,2)); //0
     dungeon.at(0).set_enemy(false);
     dungeon.at(0).set_item(false);

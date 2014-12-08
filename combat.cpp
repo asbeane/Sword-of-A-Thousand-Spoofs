@@ -325,7 +325,7 @@ bool combat(Player &player, int room)
 void displayOptions(struct Cooldowns &cds)
 {
     cout << "Choose your action! (enter the number of your choice)\n";
-    cout << "(1) Weak Attack \n\t-- cause damage enemy health, mitigated by enemy's armor value.\n";
+    cout << "(1) Weak Attack \n\t-- cause damage to enemy health, mitigated by enemy's armor value.\n";
     if(!cds.heavy)
     {
         cout << "(2) Heavy Attack \n\t-- cause damage to enemy health as well as damage enemy's armor.\n\t-- 1 turn cooldown\n";

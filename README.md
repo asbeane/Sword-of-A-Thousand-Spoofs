@@ -23,7 +23,7 @@ While(continue) <br>
 &emsp;&emsp;}<br>
 	&emsp;&emsp;if(option == 2)<br>
 &emsp;&emsp;{<br>
-		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Dungeon.move(direction);<br>
+		&emsp;&emsp;&emsp;&emsp;Dungeon.move(direction);<br>
 		&emsp;&emsp;&emsp;&emsp;if(reached treasure) continue = false;<br>
 		&emsp;&emsp;&emsp;&emsp;if(room has enemy)<br>
 		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;combat;<br>

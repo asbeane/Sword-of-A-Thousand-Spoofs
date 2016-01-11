@@ -11,7 +11,7 @@ Sword Of A Thousand Spoofs: A text-based dungeon crawler game where the player m
 
 
 Pseudocode for main: (simplified just to show basic logic of the program)
-While(continue)
+While(continue) <br>
 {
 	Print_options; //inventory, move, quit
 	Get_player_option;

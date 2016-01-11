@@ -26,14 +26,14 @@ While(continue) <br>
 		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Dungeon.move(direction);<br>
 		&emsp;&emsp;&emsp;&emsp;if(reached treasure) continue = false;<br>
 		&emsp;&emsp;&emsp;&emsp;if(room has enemy)<br>
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;combat;<br>
-			&emsp;&emsp;&emsp;&emsp;if(player_died) continue = false;<br>
-	&emsp;&emsp;&emsp;&emsp;	if(room has item)<br>
-		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	add_to_inventory;<br>
-&emsp;&emsp;&emsp;&emsp;	}<br>
+		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;combat;<br>
+		&emsp;&emsp;&emsp;&emsp;if(player_died) continue = false;<br>
+		&emsp;&emsp;&emsp;&emsp;if(room has item)<br>
+		&emsp;&emsp;add_to_inventory;<br>
+&emsp;&emsp;&emsp;&emsp;}<br>
 	&emsp;&emsp;&emsp;&emsp;If(option == 3)<br>
 		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Continue = false;<br>
-&emsp;&emsp;}<br>
+}<br>
 
 References:<br>
 http://www.retrojunkie.com/asciiart/ (for ascii pictures of enemies and items)<br>

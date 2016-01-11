@@ -8,7 +8,6 @@ Creators:
 Application Description:
 
 Sword Of A Thousand Spoofs: A text-based dungeon crawler game where the player moves through rooms of a dungeon, fighting enemies and collecting items, in a quest to find the treasure room where the legendary weapon The Sword Of A Thousand Spoofs is said to be hidden.
-Pseudoco
 
 
 Pseudocode for main: (simplified just to show basic logic of the program)

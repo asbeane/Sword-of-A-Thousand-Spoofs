@@ -29,8 +29,8 @@ While(continue) <br>
 		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;combat;<br>
 		&emsp;&emsp;&emsp;&emsp;if(player_died) continue = false;<br>
 		&emsp;&emsp;&emsp;&emsp;if(room has item)<br>
-		&emsp;&emsp;add_to_inventory;<br>
-&emsp;&emsp;&emsp;&emsp;}<br>
+		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;add_to_inventory;<br>
+&emsp;&emsp;}<br>
 	&emsp;&emsp;&emsp;&emsp;If(option == 3)<br>
 		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Continue = false;<br>
 }<br>

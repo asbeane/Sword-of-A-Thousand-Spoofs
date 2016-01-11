@@ -20,7 +20,7 @@ While(continue) <br>
 		&emsp;&emsp;&emsp;&emsp;Display_inventory;<br>
 		&emsp;&emsp;&emsp;&emsp;if(User_choose_item)<br>
 		&emsp;&emsp;&emsp;&emsp;Use_item;<br>
-&emsp;&emsp;&emsp;&emsp;}<br>
+&emsp;&emsp;}<br>
 	&emsp;&emsp;&emsp;&emsp;if(option == 2)<br>
 &emsp;&emsp;&emsp;&emsp;{<br>
 		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Dungeon.move(direction);<br>

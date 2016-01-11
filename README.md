@@ -21,8 +21,8 @@ While(continue) <br>
 		&emsp;&emsp;&emsp;&emsp;if(User_choose_item)<br>
 		&emsp;&emsp;&emsp;&emsp;Use_item;<br>
 &emsp;&emsp;}<br>
-	&emsp;&emsp;&emsp;&emsp;if(option == 2)<br>
-&emsp;&emsp;&emsp;&emsp;{<br>
+	&emsp;&emsp;if(option == 2)<br>
+&emsp;&emsp;{<br>
 		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Dungeon.move(direction);<br>
 		&emsp;&emsp;&emsp;&emsp;if(reached treasure) continue = false;<br>
 		&emsp;&emsp;&emsp;&emsp;if(room has enemy)<br>

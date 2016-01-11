@@ -13,27 +13,27 @@ Sword Of A Thousand Spoofs: A text-based dungeon crawler game where the player m
 Pseudocode for main: (simplified just to show basic logic of the program)<br>
 While(continue) <br>
 {<br>
-	&emsp;Print_options; //inventory, move, quit<br>
-	Get_player_option;<br>
-	if(option == 1)<br>
-	{<br>
-		Display_inventory;<br>
-		if(User_choose_item)<br>
-			Use_item;<br>
-	}<br>
-	if(option == 2)<br>
-{<br>
-		Dungeon.move(direction);<br>
-		if(reached treasure) continue = false;<br>
-		if(room has enemy)<br>
-			combat;<br>
-			if(player_died) continue = false;<br>
-		if(room has item)<br>
-			add_to_inventory;<br>
-	}<br>
-	If(option == 3)<br>
-		Continue = false;<br>
-}<br>
+	&emsp;&emsp;Print_options; //inventory, move, quit<br>
+	&emsp;&emsp;Get_player_option;<br>
+	&emsp;&emsp;if(option == 1)<br>
+	&emsp;&emsp;{<br>
+		&emsp;&emsp;&emsp;&emsp;Display_inventory;<br>
+		&emsp;&emsp;&emsp;&emsp;if(User_choose_item)<br>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Use_item;<br>
+&emsp;&emsp;&emsp;&emsp;}<br>
+	&emsp;&emsp;&emsp;&emsp;if(option == 2)<br>
+&emsp;&emsp;&emsp;&emsp;{<br>
+		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Dungeon.move(direction);<br>
+		&emsp;&emsp;&emsp;&emsp;if(reached treasure) continue = false;<br>
+		&emsp;&emsp;&emsp;&emsp;if(room has enemy)<br>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;combat;<br>
+			&emsp;&emsp;&emsp;&emsp;if(player_died) continue = false;<br>
+	&emsp;&emsp;&emsp;&emsp;	if(room has item)<br>
+		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	add_to_inventory;<br>
+&emsp;&emsp;&emsp;&emsp;	}<br>
+	&emsp;&emsp;&emsp;&emsp;If(option == 3)<br>
+		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Continue = false;<br>
+&emsp;&emsp;}<br>
 
 References:<br>
 http://www.retrojunkie.com/asciiart/ (for ascii pictures of enemies and items)<br>
